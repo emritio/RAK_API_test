@@ -11,7 +11,7 @@ def check_password(username, password):
     return False
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@localhost:5432/credentials'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@172.17.0.1:5432/postgres'
 db = SQLAlchemy(app)
 
 class Users(db.Model):
@@ -69,4 +69,4 @@ def login():
     return jsonify({'error': 'Invalid credentials'}), 401
 
 if __name__ == '__main__':
-    app.run(debug=True,port=8000)
+    app.run(debug=True,port=8001)

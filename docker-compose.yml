@@ -3,6 +3,8 @@ services:
     image: postgres:latest
     secrets:
       - db_password
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD_FILE: /run/secrets/db_password
 
