@@ -5,11 +5,12 @@ import psycopg2
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import datetime
 import bcrypt
+import api_keys #Python file that contains all the keys
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123@172.17.0.2:5432/postgres'
-app.config['JWT_SECRET_KEY'] = 'your-secret-key'  # Change this to a strong secret key
+app.config['SQLALCHEMY_DATABASE_URI'] =  api_keys.db_key
+app.config['JWT_SECRET_KEY'] =   api_keys.jwt_key# Change this to a strong secret key
 
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
