@@ -4,7 +4,6 @@ RUN pip install Flask
 RUN pip install psycopg2
 RUN pip install flask_sqlalchemy
 RUN pip install bcrypt
-# ENV DATABASE_URL=postgresql://postgres:123@my-postgres/postgres
 WORKDIR /app
 
 COPY apilog.py apilog.py        
