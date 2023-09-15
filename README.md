@@ -1,15 +1,19 @@
-# RAK_API_test
-Objective: To run an API that takes in login and registration using RAK device.
+# RAK_API_testing
+**Objective: To run an API that takes in login and registration using RAK device.**
 
-Languages used : Python, Html, CSS
+## Requirements
+-  Python
+-  Html
+-  CSS
 
-libraries used: from flask import Flask, request, render_template, redirect, url_for, jsonify
-                from flask_sqlalchemy import SQLAlchemy
-                import bcrypt
-                from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
-                import datetime
+**libraries:**  
+- from flask import Flask, request, render_template, redirect, url_for, jsonify
+- from flask_sqlalchemy import SQLAlchemy
+- import bcrypt
+- from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+- import datetime
 
-Introduction:
+## Introduction:
 The code  is a Flask application that demonstrates user registration, login, and a basic dashboard functionality with JWT authentication and session management.
 
 Library section:
@@ -21,23 +25,26 @@ bcrypt: A library for securely hashing passwords.
 Flask-JWT-Extended: An extension for JWT (JSON Web Token) authentication.
 datetime: Python's built-in module for handling date and time.
 
-Flask main app:
+## Flask main app:
 
 The Flask app is created and configured with the database URI for PostgreSQL and a JWT secret key. The secret key is used for signing and verifying JWT tokens.
-//SQL ALchemy for creating an instance of database in flask
-//JWTManager to initialize the tokens using the flask app.
+- SQL ALchemy for creating an instance of database in flask
+- JWTManager to initialize the tokens using the flask app.
+
+`app = Flask(__name__)`
 
 Creating an user table and required attributes using the "class Users:"
 This code defines the structure of the Users table using SQLAlchemy. It uses the db.Model base class to define the table structure. 
 The last_login_time field is added to record the timestamp of the user's last login.
 
-Helper Functions:
+### Helper Functions:
+```
+check_password(username, password)
+record_login_time(username)
+is_session_expired(last_login_time)
 
-check_password(username, password): Compares the provided password with the stored hashed password for a given username.
-record_login_time(username): Updates the last login time for a user in the database.
-is_session_expired(last_login_time): Checks whether a user's session has expired based on the difference between the current time and the last login time.
-
-Routes and Views:
+```
+### Routes and Views:
 
 / : Displays the index page using the render_template function.
 /dashboard/<username>: Displays the dashboard page for a specific user using the render_template function. If the user doesn't exist, they are redirected to the index page.
@@ -47,20 +54,20 @@ it registers the user and adds their information to the database.
 records the login time, and generates an access token.
 
 
-/Register function:
+### /Register function:
 
 directs the flask app to register.html.
 requests data from the html file and stores it in a local variable to be later passed on to the database server through the api.
 Before the passwords are stored inside the database it is being hashed  , 1-sided, and then it is stored inside the database.
 
 
-/login function:
+### /login function:
 
 directs the flask app to index.html
 requests the data from the html file and checks the database for user and verifies the credentials to let the user in.
 The session starts recording form the moment user logs in and redirects the user to the home page once the tokens expire.
 
-Conclusion of the application:
+## Conclusion of the application:
 Overall, this code provides a basic foundation for a Flask web application with user authentication, registration, and session management using JWT. 
 It also interacts with a PostgreSQL database to store user information.
 
