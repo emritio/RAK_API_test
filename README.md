@@ -46,11 +46,11 @@ is_session_expired(last_login_time)
 ```
 ### Routes and Views:
 
-/ : Displays the index page using the render_template function.
-/dashboard/<username>: Displays the dashboard page for a specific user using the render_template function. If the user doesn't exist, they are redirected to the index page.
-/register: Handles user registration. If the request method is GET, it renders the registration form. If the request method is POST,
+- **/** : Displays the index page using the render_template function.
+- **/dashboard/<username>**: Displays the dashboard page for a specific user using the render_template function. If the user doesn't exist, they are redirected to the index page.
+- **/register** : Handles user registration. If the request method is GET, it renders the registration form. If the request method is POST,
 it registers the user and adds their information to the database.
-/login: Handles user login. If the request method is GET, it renders the login form. If the request method is POST, it checks the provided credentials,
+- **/login** : Handles user login. If the request method is GET, it renders the login form. If the request method is POST, it checks the provided credentials,
 records the login time, and generates an access token.
 
 
