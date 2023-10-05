@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, url_for, jsonify # Main flask framework
+from flask import Flask # Main flask framework
 from apilog import apilog_blueprint
 from register import reg_blueprint
 from login import login_blueprint

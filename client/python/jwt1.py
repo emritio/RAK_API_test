@@ -15,12 +15,24 @@ def record_login_time(username):
     user = Users.query.filter_by(username=username).first()
     if user:
         user.last_login_time = datetime.datetime.now()
+        user.tokenid=create_access_token(identity=username)
         db.session.commit() #db is constructor object
+        return user.tokenid #c1
 
 # Check if the session has expired
-def is_session_expired(last_login_time):
+def is_session_expired(username,tokenid):
+    user=Users.query.filter_by(username=username).first()
     current_time = datetime.datetime.now()
-    return (current_time - last_login_time).total_seconds() > 120
+    n1=user.tokenid==tokenid 
+    n2= (current_time - user.last_login_time).total_seconds() >120
+    return n1 and n2
+
+def right_token(username,tokenid):
+    user=Users.query.filter_by(username=username).first()
+    if user.tokenid==tokenid:
+        return True
+    else:
+        return False
 
 
 def protected_route():

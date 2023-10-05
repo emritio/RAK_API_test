@@ -17,12 +17,12 @@ def login_route():
         password = request.form['password']
         user = Users.query.filter_by(username=username).first()
 
-        if user and password==user.password:#checkpw(password.encode('utf-8')[0:20],user.password):#check_password_hash(user.password,password):
+        if user and checkpw(password.encode('utf-8'),user.password.encode('utf-8')):#check_password_hash(user.password,password):
             # Record the login time
-            record_login_time(username)
+            token=record_login_time(username)
 
-            access_token = create_access_token(identity=username)
+            #access_token = create_access_token(identity=username)
             #print(f'Version: {app.config["VERSION"]}')
             #return render_template('dashboard.html')
-            return redirect(url_for('dash.dashboard',username=username,token=access_token))
+            return redirect(url_for('dash.dashboard',username=username, token=token))
     return jsonify({'error': 'Invalid credentials'}), 401
