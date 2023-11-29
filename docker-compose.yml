@@ -1,20 +1,21 @@
+version: '2'
 services:
   db:
-    image: postgres:15.4
+    image: postgres:16.1
+    environment:
+      POSTGRES_DB: my-postgres # Replace 'mydatabase' with your desired database name
+      POSTGRES_USER: myuser    # Replace 'myuser' with your desired database username
+    ports:
+      - "5432:5432"
     secrets:
       - db_password
-    ports:
-      - 5432:5432
-    environment:
-      POSTGRES_PASSWORD_FILE: /run/secrets/db_password
 
   client:
     build: 
-      context: ./client
+      context: ./client/python
       dockerfile: Dockerfile
     ports:
-      - "8001:8001"
-
+      - "8270:8270"
 
   wordpress:
     depends_on:
@@ -25,10 +26,10 @@ services:
     environment:
       WORDPRESS_DB_HOST: db:5432
       WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD_FILE: /run/secrets/db_password
+      WORDPRESS_DB_NAME: mydatabase  # Replace 'mydatabase' with the same database name as defined for the db service
     secrets:
       - db_password
 
 secrets:
   db_password:
-    file: db_password.txt
+    file: db_password.txt  # Replace with the path to your password file

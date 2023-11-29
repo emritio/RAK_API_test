@@ -16,6 +16,7 @@ def record_login_time(username):
     if user:
         user.last_login_time = datetime.datetime.now()
         user.tokenid=create_access_token(identity=username)
+        user.online=True
         db.session.commit() #db is constructor object
         return user.tokenid #c1
 
@@ -24,12 +25,12 @@ def is_session_expired(username,tokenid):
     user=Users.query.filter_by(username=username).first()
     current_time = datetime.datetime.now()
     n1=user.tokenid==tokenid 
-    n2= (current_time - user.last_login_time).total_seconds() >120
+    n2= (current_time - user.last_login_time).total_seconds() >6000
     return n1 and n2
 
 def right_token(username,tokenid):
     user=Users.query.filter_by(username=username).first()
-    if user.tokenid==tokenid:
+    if user.tokenid==tokenid and user.tokenid!=None:
         return True
     else:
         return False

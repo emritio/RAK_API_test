@@ -5,11 +5,11 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <meta name="version" content="0.0.0" />
 </head>
-<body>
+<body style="background-color: black;">
     <div class="container">
         <h1>Registration</h1>
         <!-- id="register-form" -->
-        <form  action="/register" method="POST">
+        <form action="/register" method="POST">
             <input type="text" name="username" placeholder="Username" required >
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Register</button>

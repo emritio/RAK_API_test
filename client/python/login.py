@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, jsonify, request
-from jwt1 import is_session_expired, record_login_time, create_access_token
-from database import db, Users, checkpw, hashpw
+from jwt1 import record_login_time
+from database import Users, checkpw
+from Device_details import utility  
 
 
 login_blueprint = Blueprint('login', __name__)
@@ -16,13 +17,13 @@ def login_route():
         username = request.form['username']
         password = request.form['password']
         user = Users.query.filter_by(username=username).first()
+        print(password.encode('utf-8').decode(),"\n ppppp\n", user.password.encode('utf-8'))
 
         if user and checkpw(password.encode('utf-8'),user.password.encode('utf-8')):#check_password_hash(user.password,password):
             # Record the login time
             token=record_login_time(username)
-
-            #access_token = create_access_token(identity=username)
-            #print(f'Version: {app.config["VERSION"]}')
-            #return render_template('dashboard.html')
+            
+            utility(username)
+            
             return redirect(url_for('dash.dashboard',username=username, token=token))
     return jsonify({'error': 'Invalid credentials'}), 401

@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard</title>
-    <meta name="version" content="0.0.0" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dash.css') }}">
+  <meta name="version" content="0.0.1" />
 </head>
 <body>
-    <h1>Welcome, <span id="user-name">{{ username }}</span>!</h1>
-    <!-- <h2> Currently used Password: <span id="token">{{token}}</span></h2> -->
-    <h4>Logged in successfully.</h4>
+  <div class="container">
+    <div class="header">
+      <h1>Welcome, <span id="user-name">{{ username }}</span>!</h1>
+      <a href="{{ url_for('logout.logout_route') }}?uname={{ username }}" class="logout-button">Logout</a>
+    </div>
+
+    <div class="content">
+      <div class="welcome-message">
+        <h3>Welcome {{username}}!!!</h3>
+        <h4>Logged in successfully.</h4><br>
+        <h2>Here is your Dashboard</h2>
+      </div>
+
+    </div>
+  </div>
 </body>
 </html>

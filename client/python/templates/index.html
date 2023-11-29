@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-    <meta name="version" content="0.0.0" />
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+  <meta name="version" content="0.0.1" />
+  <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-testid="fontawesome"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Login</h1>
-        <form action="/login" method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Log in</button>
-        </form>
-        <p id="message"></p>
+  <div class="container">
+    <div class="login-box">
+      <h1>Login <i class="fas fa-user"></i></h1>
 
-        <div class="register-link">
-            <p>New user? <a href="register">Register</a></p>
+      <form action="/login" method="POST">
+        <div class="input-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" placeholder="Enter your username" required>
         </div>
-    </div>
 
-    <!-- <script src="{{ url_for('static', filename='scripts.js') }}"></script> -->
+        <div class="input-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit">Log in</button>
+          <p id="message"></p>
+        </div>
+      </form>
+
+      <div class="register-link">
+        <p>New user? <a href="register">Register</a></p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

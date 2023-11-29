@@ -6,7 +6,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgba(31, 24, 24, 0.79); /* Background color for the whole page */
+  background-color: #2c3e50;
 }
 
 .container {
@@ -14,40 +14,42 @@ body {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Box shadow for the container */
-  background-color: #fff; /* Background color for the container */
-  max-width: 400px; /* Maximum width for the container */
-  width: 90%; /* Responsive width for smaller screens */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background-color: #34495e;
+  max-width: 400px;
+  width: 90%;
 }
 
 h1 {
   margin-top: 0;
-  color: #007bff; /* Heading color */
+  color: #3498db;
 }
 
 input {
   display: block;
   margin: 10px auto;
-  padding: 10px;
-  width: 100%;
-  border: 1px solid #ccc;
+  padding: 8px;
+  width: calc(100% - 16px);
+  border: 1px solid #2980b9;
   border-radius: 5px;
+  background-color: #2c3e50;
+  color: #ecf0f1;
 }
 
 button {
   display: block;
   margin: 10px auto;
   padding: 10px 20px;
-  background-color: #007bff; /* Button background color */
-  color: #fff; /* Button text color */
+  background-color: #3498db;
+  color: #fff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s; /* Smooth transition on hover */
+  transition: background-color 0.2s;
 }
 
 button:hover {
-  background-color: #0056b3; /* Button background color on hover */
+  background-color: #2980b9;
 }
 
 .register-link {
@@ -55,15 +57,17 @@ button:hover {
 }
 
 .register-link a {
-  color: #007bff;
+  color: #3498db;
   text-decoration: none;
 }
 
 .login-link {
   margin-top: 20px;
+  color: #ecf0f1;
+  text-decoration: none;
 }
 
 .login-link a {
-  color: #007bff;
-  text-decoration: none;
+  color: #1abc9c;
+  text-decoration: underline;
 }

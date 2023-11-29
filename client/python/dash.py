@@ -1,7 +1,8 @@
 #Dashboard opens the home page
-from database import db, Users
-from flask import render_template, redirect, url_for, Blueprint, request 
+from database import Users
+from flask import render_template, Blueprint
 from jwt1 import is_session_expired, right_token
+
 dash_blueprint = Blueprint('dash', __name__)
 
 @dash_blueprint.route('/dashboard/<username>/<token>', methods=['GET'])
@@ -22,7 +23,7 @@ def dashboard(username,token):
         else:
             # Pass the token to the dashboard template (optional)
             if right_token(username,token):
-                return render_template('dashboard.html', username=username)
+                    return render_template('dashboard.html', username=username,tokenid=token)
             else:
                 return "Invalid URL", 401
     else:

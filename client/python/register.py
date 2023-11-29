@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, redirect, url_for, jsonify, request
 from database import db, Users
 import bcrypt
+
 reg_blueprint = Blueprint('register', __name__)
 #The function routes to the registration page for user info
 @reg_blueprint.route('/register', methods=['GET', 'POST'])
@@ -24,11 +25,13 @@ def register_route():
         hashed_password2=hashed_password.decode('utf-8')
         a=b'1001'
         print(len(a))
-        print(hashed_password2,"\n",len(hashed_password2))
+        print(hashed_password)
+        print(hashed_password2,"\n",len(hashed_password2),"\n")
         # Create a new User instance and save it to the database
         new_user = Users(username=username, password=hashed_password2)
         db.session.add(new_user)
         db.session.commit()
+
         
         return render_template('index.html')
         #return redirect(url_for('index.html'))
