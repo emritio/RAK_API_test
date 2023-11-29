@@ -15,7 +15,7 @@ services:
       context: ./client/python
       dockerfile: Dockerfile
     ports:
-      - "8270:8270"
+      - "8000:8000"
 
   wordpress:
     depends_on:
